@@ -1,4 +1,4 @@
-// File: C:\Users\user\Desktop\simpal-queue-screen\next-shadcn-app-router\app\layout.tsx
+// File: C:\Users\Sun\Desktop\host-screen\app\layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
