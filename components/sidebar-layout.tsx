@@ -2,7 +2,8 @@
 import { ReactNode } from 'react'
 import { Button } from './ui/button'
 import { useAuth } from '@/contexts/auth-context'
-import { LogOut, Home, Users, Settings, BarChart3 } from 'lucide-react'
+import { LogOut, Home, Users, Settings, BarChart3, Menu } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 interface SidebarLayoutProps {
   children: ReactNode
@@ -10,12 +11,14 @@ interface SidebarLayoutProps {
 
 export function SidebarLayout({ children }: SidebarLayoutProps) {
   const { logout, employeeId } = useAuth()
+  const router = useRouter()
 
   const menuItems = [
-    { icon: Home, label: 'Dashboard', href: '#' },
-    { icon: Users, label: 'Staff Management', href: '#' },
-    { icon: BarChart3, label: 'Reports', href: '#' },
-    { icon: Settings, label: 'Settings', href: '#' },
+    { icon: Home, label: 'Dashboard', href: '/', onClick: () => router.push('/') },
+    { icon: Menu, label: 'Menu Editor', href: '/menu', onClick: () => router.push('/menumanagement') },
+    { icon: Users, label: 'Staff Management', href: '#', onClick: () => console.log('Staff Management') },
+    { icon: BarChart3, label: 'Reports', href: '#', onClick: () => console.log('Reports') },
+    { icon: Settings, label: 'Settings', href: '#', onClick: () => console.log('Settings') },
   ]
 
   return (
@@ -36,7 +39,7 @@ export function SidebarLayout({ children }: SidebarLayoutProps) {
                 <Button
                   variant="ghost"
                   className="w-full justify-start text-left hover:bg-gray-100"
-                  onClick={() => console.log(`Navigate to ${item.label}`)}
+                  onClick={item.onClick}
                 >
                   <item.icon className="w-5 h-5 mr-3" />
                   {item.label}
